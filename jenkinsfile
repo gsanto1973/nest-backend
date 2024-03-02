@@ -12,18 +12,6 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Deteniendo imagen MongoDb') {
-            steps {
-                echo 'Stoping MongoDb image..'
-                sh 'docker-compose stoptall'
-            }
-        }
-        stage('Subiendo imagen MongoDb') {
-            steps {
-                echo 'Starting MongoDb image..'
-                sh 'docker-compose up -d'
-            }
-        }
         stage('Subiendo backend') {
             steps {
                 echo 'Starting backend..'
