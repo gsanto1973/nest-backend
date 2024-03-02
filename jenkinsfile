@@ -1,7 +1,35 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs "node"
+    }
+
     stages {
+        stage('Install') {
+            steps {
+                echo 'Install..'
+                sh 'npm install'
+            }
+        }
+        stage('Deteniendo imagen MongoDb') {
+            steps {
+                echo 'Stoping MongoDb image..'
+                sh 'docker-compose stoptall'
+            }
+        }
+        stage('Subiendo imagen MongoDb') {
+            steps {
+                echo 'Starting MongoDb image..'
+                sh 'docker-compose up -d'
+            }
+        }
+        stage('Subiendo backend') {
+            steps {
+                echo 'Starting backend..'
+                sh 'npm run start:dev'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
