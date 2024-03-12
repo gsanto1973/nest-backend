@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs "node"
+    }
+
+    stages {
+        stage('Install') {
+            steps {
+                echo 'Install..'
+                sh 'npm install'
+            }
+        }
+        stage('Subiendo backend') {
+            steps {
+                echo 'Starting backend..'
+                sh 'npm run start:dev'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+    
+}
