@@ -7,6 +7,10 @@ export class User {
   // Mongo va a crear automáticamente el _id
   // _id: string;
 
+  // No se crea como una propiedad, solo se
+  // crea para que el uso de JWT
+  _id?: string;
+
   @Prop({ unique: true, required: true })
   email: string;
 
